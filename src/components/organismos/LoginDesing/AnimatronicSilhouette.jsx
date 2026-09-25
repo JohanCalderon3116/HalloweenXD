@@ -7,6 +7,7 @@ export const AnimatronicSilhouette = ({ isVisible = false, peekPosition = "cente
       $visible={isVisible}
       $position={peekPosition}
       aria-hidden="true"
+      style={{ opacity: 0.18, filter: 'brightness(0.7)' }}
     >
       <div className="animatronic-glow" />
       <svg
@@ -194,9 +195,9 @@ const chromaticGlitch = keyframes`
 const SilhouetteContainer = styled.div`
   position: absolute;
   pointer-events: none;
-  z-index: 1;
-  transition: opacity 0.12s ease-in-out;
-  opacity: ${({ $visible }) => ($visible ? "0.92" : "0")};
+  z-index: 0;
+  transition: opacity 0.4s ease-in-out;
+  opacity: ${({ $visible }) => ($visible ? "0.22" : "0")};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -231,24 +232,17 @@ const SilhouetteContainer = styled.div`
   ${({ $visible }) =>
     $visible &&
     css`
-      animation: ${twitch} 0.28s infinite alternate, ${chromaticGlitch} 0.2s infinite;
+      animation: ${twitch} 2s infinite alternate;
     `}
 
   .animatronic-svg {
     width: 100%;
     height: auto;
     display: block;
-    filter: contrast(130%) brightness(0.9);
+    filter: contrast(90%) brightness(0.7);
   }
 
   .animatronic-glow {
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 50, 0, 0.18) 0%, transparent 70%);
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: none;
   }
 `;

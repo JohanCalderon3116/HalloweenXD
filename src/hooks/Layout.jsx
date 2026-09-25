@@ -12,14 +12,14 @@ import {
   useMostrarSucursalesAsignadsQueryStack,
   useMostrarUsuariosQueryStack,
 } from "../index";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { Device } from "../styles/breakpoints";
 import { IndicadorConexion } from "../components/moleculas/IndicadorConexion";
 import { useFnafStore } from "../store/FnafStore";
 import { FnafCamerasModal } from "../components/organismos/FnafDesign/FnafCamerasModal";
 import { FnafFloatingLauncher } from "../components/organismos/FnafDesign/FnafFloatingLauncher";
 
-export const Layout = ({ children }) => {
+export const Layout = memo(({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [stateMenu, setStateMenu] = useState(false);
   const { isCamerasOpen, openCameras, closeCameras } = useFnafStore();
@@ -78,7 +78,7 @@ export const Layout = ({ children }) => {
       </Containerbody>
     </Container>
   );
-};
+});
 
 const Container = styled.main`
   display: grid;

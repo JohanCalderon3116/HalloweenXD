@@ -36,7 +36,6 @@ function App() {
       <AuthContextProvider>
         <GlobalStyles></GlobalStyles>
         <Myroutes></Myroutes>
-        <ReactQueryDevtools initialIsOpen={true}></ReactQueryDevtools>
       </AuthContextProvider>
     </ThemeProvider>
   );

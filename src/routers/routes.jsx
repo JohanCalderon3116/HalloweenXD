@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+// AnimatePresence removido para rendimiento en mobile/tablet
 import {
   Categorias,
   Configuraciones,
@@ -33,8 +33,7 @@ export function Myroutes() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+    <Routes location={location} key={location.pathname}>
         <Route
           path="/login"
           element={
@@ -264,8 +263,8 @@ export function Myroutes() {
             </Layout>
           }
         />
-        <Route path="*" element={<PageNot></PageNot>}></Route>
+        <Route path="*" element={<PageNot></PageNot>}>        </Route>
+        <Route path="*" element={<PageNot />} />
       </Routes>
-    </AnimatePresence>
   );
 }

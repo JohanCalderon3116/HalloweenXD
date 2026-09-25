@@ -64,18 +64,17 @@ export const LoginTemplate = () => {
       setGlitchPosition(nextPos);
       setIsGlitching(true);
 
-      try {
-        securityAudio.playStaticBurst(0.12);
-      } catch {
-        // Safe fail
-      }
+      // sound disabled
+      // try {
+      //   securityAudio.playStaticBurst(0.12);
+      // } catch {}
 
       glitchResetTimer = setTimeout(() => {
         if (isMounted) {
           setIsGlitching(false);
         }
-      }, 300);
-    }, 12000);
+      }, 700);
+    }, 25000);
 
     return () => {
       isMounted = false;
@@ -85,25 +84,30 @@ export const LoginTemplate = () => {
   }, []);
 
   const handleBootComplete = () => {
-    sessionStorage.setItem("sec_boot_done", "true");
+    // sound disabled
+    // sessionStorage.setItem("sec_boot_done", "true");
     setIsBooting(false);
-    securityAudio.playCrtTurnOn();
+    // securityAudio.playCrtTurnOn();
   };
 
   const handleInputFocus = () => {
-    securityAudio.playSecurityBeep(880, 0.03);
+    // sound disabled
+    // securityAudio.playSecurityBeep(880, 0.03);
   };
 
   const validarContraseña = () => {
-    securityAudio.ensureContext();
+    // sound disabled
+    // securityAudio.ensureContext();
     const data = dataContraseña;
     const contraseñaReal = data?.[0]?.contraseña;
     if (Number(inputContraseña) === contraseñaReal) {
       setContraseñaOk(true);
-      securityAudio.playSecurityBeep(1200, 0.08);
+      // sound disabled
+      // securityAudio.playSecurityBeep(1200, 0.08);
       toast.success("Credencial verificada: Acceso SuperAdmin Concedido");
     } else {
-      securityAudio.playSecurityBeep(300, 0.15);
+      // sound disabled
+      // securityAudio.playSecurityBeep(300, 0.15);
       toast.error("Contraseña de seguridad incorrecta");
     }
   };
@@ -111,23 +115,27 @@ export const LoginTemplate = () => {
   const { mutate } = useIniciarSesionConEmailMutationStack();
 
   const manejadorEmailSesion = (data) => {
-    securityAudio.playTactileClick();
+    // sound disabled
+    // securityAudio.playTactileClick();
     mutate({ email: data.email, password: data.password });
   };
 
   const manejadorEmailSesionTester = () => {
-    securityAudio.playTactileClick();
+    // sound disabled
+    // securityAudio.playTactileClick();
     mutate({ email: "tester1@gmail.com", password: "123456" });
   };
 
   const handleSelectModo = (modo) => {
-    securityAudio.playTactileClick();
+    // sound disabled
+    // securityAudio.playTactileClick();
     setStateModo(modo);
     setStateModos(false);
   };
 
   const handleVolver = () => {
-    securityAudio.playTactileClick();
+    // sound disabled
+    // securityAudio.playTactileClick();
     setStateModos(true);
     setContraseñaOk(false);
     setInputContraseña("");
@@ -443,7 +451,7 @@ const Container = styled.div`
   ${({ $glitch }) =>
     $glitch &&
     css`
-      animation: ${glitchShake} 0.18s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      /* teleport animation removed */
     `}
 
   .monitor-frame {

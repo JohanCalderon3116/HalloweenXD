@@ -2,38 +2,28 @@
 class SecurityAudioSystem {
   constructor() {
     this.ctx = null;
-    this.isMuted = false;
+    this.isMuted = true; // SILENCED
     this.userInteracted = false;
   }
 
   init() {
-    if (this.ctx) return;
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) {
-        this.ctx = new AudioCtx();
-      }
-    } catch {
-      // AudioContext unavailable
-    }
+    // SILENCED - no audio
+    return;
   }
 
   ensureContext() {
     this.userInteracted = true;
-    this.init();
-    if (this.ctx && this.ctx.state === "suspended") {
-      this.ctx.resume().catch(() => {});
-    }
+    // SILENCED
   }
 
   toggleMute() {
     this.ensureContext();
-    this.isMuted = !this.isMuted;
-    return this.isMuted;
+    this.isMuted = true;
+    return true;
   }
 
   setMute(mute) {
-    this.isMuted = mute;
+    this.isMuted = true;
   }
 
   // 1. Terminal BIOS typing beep
